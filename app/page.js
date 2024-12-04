@@ -11,9 +11,8 @@ export default function PlayfairCipher() {
   const [decryptionKey, setDecryptionKey] = useState("");
   const [decryptedText, setDecryptedText] = useState("");
 
-  // Function to create the Playfair cipher matrix
   const createMatrix = (key) => {
-    const alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"; // J is merged with I
+    const alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
     key = key.toUpperCase().replace(/J/g, "I");
     const matrix = [];
     const used = new Set();
@@ -108,8 +107,10 @@ export default function PlayfairCipher() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
-      <h1 className="text-4xl font-bold mb-6">Playfair Cipher</h1>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center p-4">
+      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100">
+        Playfair Cipher
+      </h1>
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -118,28 +119,28 @@ export default function PlayfairCipher() {
           hidden: { opacity: 0, x: -50 },
           visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
         }}
-        className="bg-white shadow-xl p-6 rounded-lg mb-6 w-full max-w-md"
+        className="bg-white dark:bg-gray-800 shadow-xl p-6 rounded-lg mb-6 w-full max-w-md"
       >
-        <h2 className="text-2xl font-semibold mb-4 text-blue-600">
+        <h2 className="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">
           Encryption
         </h2>
-        <label className="block mb-2">
+        <label className="block mb-2 text-gray-900 dark:text-gray-200">
           Key:
           <input
             type="text"
             value={encryptionKey}
             onChange={(e) => setEncryptionKey(e.target.value)}
-            className="border w-full p-2 rounded mt-1"
+            className="border w-full p-2 rounded mt-1 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             placeholder="Enter key"
           />
         </label>
-        <label className="block mb-4">
+        <label className="block mb-4 text-gray-900 dark:text-gray-200">
           Plaintext:
           <input
             type="text"
             value={encryptionPlaintext}
             onChange={(e) => setEncryptionPlaintext(e.target.value)}
-            className="border w-full p-2 rounded mt-1"
+            className="border w-full p-2 rounded mt-1 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             placeholder="Enter plaintext"
           />
         </label>
@@ -147,14 +148,14 @@ export default function PlayfairCipher() {
           onClick={() =>
             setCiphertext(playfairEncrypt(encryptionPlaintext, encryptionKey))
           }
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 dark:hover:bg-blue-600"
         >
           Encrypt
         </button>
         {ciphertext && (
-          <div className="mt-4">
+          <div className="mt-4 text-gray-900 dark:text-gray-200">
             <h3 className="text-lg font-bold">Ciphertext:</h3>
-            <p className="text-gray-700">{ciphertext}</p>
+            <p>{ciphertext}</p>
           </div>
         )}
       </motion.div>
@@ -166,28 +167,28 @@ export default function PlayfairCipher() {
           hidden: { opacity: 0, x: 50 },
           visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
         }}
-        className="bg-white shadow-xl p-6 rounded-lg w-full max-w-md"
+        className="bg-white dark:bg-gray-800 shadow-xl p-6 rounded-lg w-full max-w-md"
       >
-        <h2 className="text-2xl font-semibold mb-4 text-green-600">
+        <h2 className="text-2xl font-semibold mb-4 text-green-600 dark:text-green-400">
           Decryption
         </h2>
-        <label className="block mb-2">
+        <label className="block mb-2 text-gray-900 dark:text-gray-200">
           Key:
           <input
             type="text"
             value={decryptionKey}
             onChange={(e) => setDecryptionKey(e.target.value)}
-            className="border w-full p-2 rounded mt-1"
+            className="border w-full p-2 rounded mt-1 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             placeholder="Enter key"
           />
         </label>
-        <label className="block mb-4">
+        <label className="block mb-4 text-gray-900 dark:text-gray-200">
           Ciphertext:
           <input
             type="text"
             value={decryptionCiphertext}
             onChange={(e) => setDecryptionCiphertext(e.target.value)}
-            className="border w-full p-2 rounded mt-1"
+            className="border w-full p-2 rounded mt-1 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-200"
             placeholder="Enter ciphertext"
           />
         </label>
@@ -197,14 +198,14 @@ export default function PlayfairCipher() {
               playfairDecrypt(decryptionCiphertext, decryptionKey)
             )
           }
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          className="bg-green-600 dark:bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 dark:hover:bg-green-600"
         >
           Decrypt
         </button>
         {decryptedText && (
-          <div className="mt-4">
+          <div className="mt-4 text-gray-900 dark:text-gray-200">
             <h3 className="text-lg font-bold">Decrypted Text:</h3>
-            <p className="text-gray-700">{decryptedText}</p>
+            <p>{decryptedText}</p>
           </div>
         )}
       </motion.div>
